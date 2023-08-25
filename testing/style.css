@@ -1,0 +1,221 @@
+@font-face {
+    font-family: MyFont;
+    src: url(./assets/fonts/Roboto-Regular.ttf);
+}
+
+
+/* .attribution {
+    font-size: 11px;
+    text-align: center;
+    color: hsl(227, 42%, 85%);
+    margin-top: 20px;
+} */
+
+body {
+    font-family: MyFont;
+    background-color: hsl(234, 29%, 20%);
+    font-family: Arial, Helvetica, sans-serif;
+    align-items: center;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    place-items: center;
+    flex-direction: column;
+
+}
+
+.container {
+    width: 800px;
+    padding-right: 20px;
+    padding-top: 10px;
+    background-color: white;
+    display: flex;
+    border-radius: 20px;
+
+}
+
+.left {
+    width: 40%;
+    overflow: hidden;
+}
+
+.right {
+    width: 60%;
+    margin-bottom:20px ;
+    margin-top: 20px;
+    margin-left: 25px;
+}
+
+.left img {
+    width: 100%;
+    border-radius: 20px;
+}
+
+h1 {
+    color: hsl(229, 31%, 21%);
+    font-size: 55px;
+    font-weight: bold;
+    padding-left: 25px;
+   
+}
+
+p {
+    color: hsl(234, 29%, 20%);
+    margin-bottom: 10px;
+    font-size: 17px;
+    padding-left: 25px;
+}
+
+ul {
+    text-align: left;
+    padding-left: 30px;
+    margin-left: 15px;
+    padding-top: 15px;
+    list-style-image: url(./assets/images/icon-success.svg);
+}
+
+li {
+ 
+    margin-bottom: 10px;
+    text-align: left;
+    color: hsl(234, 29%, 20%);
+    
+}
+
+.email-container {
+    display: flex;
+    width: 80%;
+    flex-direction: column;
+    position: relative;
+    ;
+}
+
+label {
+    color: hsl(229, 31%, 21%);
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+input {
+    padding: 15px 20px;
+    border-radius: 5px;
+    border: 1px solid hsl(231, 7%, 60%);
+    outline: none;
+    font-family: inherit;
+}
+
+.error-message {
+     color: hsl(0, 100%, 63%);
+     font-size: 14px;
+     position: absolute; 
+     right: 0; 
+     top: 5px; 
+     display: none;
+}
+
+input.invalid-email {
+    border-color: red;
+}
+
+button {
+    font-family: inherit;
+    margin-top: 20px;
+    padding: 15px 25px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    background-color: hsl(234, 29%, 20%);
+    color: white;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: hsl(4, 100%, 67%);
+    transition: all 0.3s;
+}
+
+/* .hide {
+    display: none;
+} */
+
+.card {
+    border-radius: 20px;
+    background-color: hsl(0, 0%, 100%);
+    padding: 20px;
+    width: 300px;
+}
+
+.card h1 {
+    color: hsl(229, 31%, 21%);
+    font-size: 50px;
+    font-weight: bold;
+    padding-left: 0;
+    margin-bottom: 10px;
+}
+
+.card img {
+    width: 40px;
+}
+
+.card button {
+    margin-top: 20px;
+    padding: 15px 90px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    background-color: hsl(234, 29%, 20%);
+    color: white;
+}
+    
+
+
+@media (max-width: 768px) {
+
+    .container {
+        flex-direction: column-reverse; 
+        width: 110%;
+        max-width: 100%;
+        padding: 0;
+        margin: 0;
+        
+    }
+    .right {
+        width: 100%;
+    }
+    
+    .left {
+        width: 100%;
+        
+    }
+    
+    h1 {
+        
+        font-size: 40px;
+        padding-left: 0;
+    }
+    p {
+        font-size: 16px;
+        padding-left: 0;
+    }
+
+    label {
+        margin-top: 10px;
+        margin-bottom: 5px;
+        font-size: small;
+    }
+  
+    ul {
+        padding-left: 0;
+        margin-left: 20px;
+    }
+    
+
+    .left img {
+        content: url(./assets/images/illustration-sign-up-mobile.svg);
+    }
+
+    .error-message {
+        top: -0px;
+
+    }
+}
