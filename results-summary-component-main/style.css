@@ -1,0 +1,210 @@
+@font-face {
+    font-family: ss;
+    src: url(./assets/fonts/HankenGrotesk-VariableFont_wght.ttf);
+}
+
+
+.attribution {
+    font-size: 14px;
+    white-space: nowrap;
+    text-align: center;
+  }
+
+:root
+{
+  --rec:hsla(0, 100%, 67%, 10%);
+  --mem: hsla(39, 100%, 56%, 10%);
+  --veb: hsla(166, 100%, 37%, 10%);
+  --vis: hsla(234, 85%, 45%, 10%);
+}
+html, body {
+    height: 100%;
+}
+
+* {
+    font-family: ss;
+    /* box-sizing: border-box; */
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    /* padding-top: 200px; */
+    place-items: center;
+    flex-direction: column;
+}
+
+.container {
+    display: flex;
+    width: 550px;
+    height: 450px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+
+.columsCenters {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    
+}
+
+.result {
+    background: linear-gradient(hsl(252, 100%, 67%), hsl(241, 81%, 54%));
+    width: 50%;
+    border-radius: 15px;
+    gap:2px;
+    color: white;
+}
+
+.cerc {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    background:linear-gradient(hsla(256, 72%, 46%, 1), hsla(241, 72%, 46%, 0)) ;
+}
+
+.text {
+    padding-left: 15px;
+    font-size: 18px;
+    text-align: center;
+}
+
+.gr {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.summary {
+    width: 50%;
+}
+
+.sumTitle {
+    padding-left: 30px;
+}
+
+.logoreac img, .logomem img, .logoVeb img, .logoVis img {
+    width: 15%;  /* Adjust the width as needed */
+    height: auto;  /* This ensures that the image maintains its aspect ratio */
+}
+
+
+.rows {
+    background-color: blue;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 15px;
+    width: 95%;
+    margin: 10px;
+    height: 65px;
+}
+
+.rateEdit {
+    margin: 10px;
+    color: hsl(224, 30%, 27%);
+    font-size: 14px;
+}
+
+.logoPos {
+    padding-left: 10px;
+    display: flex;
+}
+
+.parEdit {
+    margin: 25px;
+    font-size: 18px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.reac {
+    background-color: var(--rec);
+}
+.mem {
+    background-color: var(--mem);
+}
+.veb {
+    background-color: var(--veb);
+}
+.vis {
+    background-color: var(--vis);
+}
+
+button {
+    background: hsl(234, 29%, 20%);
+    color: white;
+    width: 250px;
+    height: 40px;
+    border-radius: 15px;
+    outline: none;
+    border: none;
+    margin: 10px;
+}
+
+button:hover {
+    cursor: pointer;
+    background: linear-gradient(hsl(252, 100%, 67%), hsl(241, 81%, 54%));
+}
+
+@media (max-width: 768px) {
+    body {
+        padding-top: 15px;
+        white-space: nowrap;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        white-space: nowrap;
+    }
+
+    
+.logoreac img, .logomem img, .logoVeb img, .logoVis img {
+    width: 10%;  /* Adjust the width as needed */
+    height: auto;  /* This ensures that the image maintains its aspect ratio */
+}
+
+    .logoPos {
+        display: flex;
+        justify-content: space-around;
+        padding-right: 100px;
+        width: 60%;
+    }
+
+    
+    .result {
+       width: 100%;
+       display: flex; /* Each section takes the full width of the container */
+   }
+
+   .text {
+    font-size: 16px;
+    text-justify: auto;
+   }
+    .summary {
+       width: 95%; /* Each section takes the full width of the container */
+   }
+    h3, button {
+        font-size: 0.9em; /* Slightly reduce the font size */
+    }
+
+    .rows {
+        width: 100%; /* Rows take the full width */
+        margin: 10px;
+        justify-content: space-around;
+    }
+
+    .rateEdit {
+        width: ;
+    }
+
+    button {
+        width: 80%; /* Adjust button width */
+        margin: 10px 10px 15px 35px ;
+    }
+}
