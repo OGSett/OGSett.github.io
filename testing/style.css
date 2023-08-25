@@ -3,14 +3,13 @@
     src: url(./assets/fonts/Roboto-Regular.ttf);
 }
 
-/* edit */
 
-.attribution {
+/* .attribution {
     font-size: 11px;
     text-align: center;
     color: hsl(227, 42%, 85%);
     margin-top: 20px;
-}
+} */
 
 body {
     font-family: MyFont;
@@ -159,7 +158,6 @@ button:hover {
 }
 
 .card button {
-    width: ;
     margin-top: 20px;
     padding: 15px 90px;
     border-radius: 5px;
