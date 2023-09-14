@@ -1,10 +1,19 @@
 
-function addItem(event) {
+async function addItem(event) {
   event.preventDefault(); // no reloads
 
   // get the input text
   const todoInput = document.getElementById("todoInput");
   const todoText = todoInput.value;
+
+  try {
+      await db.collection("checker").add({
+          text: todoText,  // corrected this line
+          status: "active"
+      });
+  } catch (error) {
+      console.error("Error adding document: ", error);
+  }
 
   if (todoText !== "") {
     // create  div parentr
