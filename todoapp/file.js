@@ -6,14 +6,15 @@ async function addItem(event) {
   const todoInput = document.getElementById("todoInput");
   const todoText = todoInput.value;
 
-  try {
-      await db.collection("checker").add({
-          text: todoText,  // corrected this line
-          status: "active"
-      });
-  } catch (error) {
-      console.error("Error adding document: ", error);
-  }
+  db.collection("checker").add({
+    text: todoText,
+    status: "active"
+}).then(() => {
+    console.log("Document successfully written!");
+}).catch((error) => {
+    console.error("Error writing document: ", error);
+});
+
 
   if (todoText !== "") {
     // create  div parentr
