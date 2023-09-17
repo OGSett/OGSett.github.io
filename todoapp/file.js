@@ -58,3 +58,49 @@ async function addItem(event) {
     alert("Please enter a todo item!");
   }
 }
+
+
+async function loadTodosFromDatabase() {
+  const todoList = document.getElementById("todoList");
+
+  // Fetch all documents from the 'checker' collection
+  const querySnapshot = await db.collection("checker").get();
+
+  // Iterate through each document and display it
+  querySnapshot.forEach(doc => {
+      const todoData = doc.data();
+      const todoText = todoData.text;
+
+      // Create the to-do item DOM elements (similar to your addItem function)
+      const todoItem = document.createElement("div");
+      todoItem.classList.add("todoItem");
+      if (todoData.status === "completed") {
+          todoItem.classList.add("completed");
+      }
+
+      const check = document.createElement("div");
+      check.classList.add("check");
+      const todoCheckMark = document.createElement("div");
+      todoCheckMark.classList.add("todoCheckMark");
+      const checkImage = document.createElement("img");
+      checkImage.src = "./images/icon-check.svg";
+      todoCheckMark.appendChild(checkImage);
+
+      const todoTextDiv = document.createElement("div");
+      todoTextDiv.classList.add("todoText");
+      todoTextDiv.textContent = todoText;
+
+      check.appendChild(todoCheckMark);
+      todoItem.appendChild(check);
+      todoItem.appendChild(todoTextDiv);
+      todoList.appendChild(todoItem);
+
+      // Add the click event listener
+      todoItem.addEventListener('click', function() {
+          this.classList.toggle('completed');
+      });
+  });
+}
+
+// Call the loadTodosFromDatabase function when the page loads
+window.onload = loadTodosFromDatabase;
