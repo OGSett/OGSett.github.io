@@ -18,3 +18,24 @@ const db = firebase.firestore(app);
 window.db = db;
 
 console.log("Firebase and Firestore initialized successfully!");
+
+
+firebase.auth().signInAnonymously()
+    .catch((error) => {
+        console.error("Error during anonymous sign-in:", error);
+    });
+
+
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+          // User is signed in
+          const uid = user.uid;
+          console.log("Anonymous user signed in with UID:", uid);
+          
+          // Load the todos for this user
+          loadTodosFromDatabase(uid);
+      } else {
+          // User is signed out
+          console.log("User is signed out");
+      }
+  });

@@ -5,9 +5,10 @@ async function addItem(event) {
   // get the input text
   const todoInput = document.getElementById("todoInput");
   const todoText = todoInput.value;
+  const userId = firebase.auth().currentUser.uid;
 
-  db.collection("checker").add({
-    text: todoText,
+  db.collection('todos').doc(userId).collection('items').add({
+    text: todoText,   // The to-do's text
     status: "active"
 }).then(() => {
     console.log("Document successfully written!");
@@ -60,11 +61,15 @@ async function addItem(event) {
 }
 
 
-async function loadTodosFromDatabase() {
+async function loadTodosFromDatabase(userId) {
   const todoList = document.getElementById("todoList");
 
+
+  const todosRef = db.collection('todos').doc(userId).collection('items');
+  const querySnapshot = await todosRef.get();
+
   // Fetch all documents from the 'checker' collection
-  const querySnapshot = await db.collection("checker").get();
+  // const querySnapshot = await db.collection("checker").get();
 
   // Iterate through each document and display it
   querySnapshot.forEach(doc => {
@@ -103,4 +108,8 @@ async function loadTodosFromDatabase() {
 }
 
 // Call the loadTodosFromDatabase function when the page loads
-window.onload = loadTodosFromDatabase;
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+      loadTodosFromDatabase(user.uid);
+  }
+});
