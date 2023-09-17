@@ -50,7 +50,7 @@ async function addItem(event) {
     // clear the input
     todoInput.value = "";
 
-    // Add a click event listener to toggle the completion status
+    // event listener to toggle the completion status
     todoItem.addEventListener('click', function() {
         this.classList.toggle('completed');
     });
@@ -67,16 +67,14 @@ async function loadTodosFromDatabase(userId) {
 
   const todosRef = db.collection('todos').doc(userId).collection('items');
   const querySnapshot = await todosRef.get();
-
-  // Fetch all documents from the 'checker' collection
   // const querySnapshot = await db.collection("checker").get();
 
-  // Iterate through each document and display it
+  // iterate through each document and display it
   querySnapshot.forEach(doc => {
       const todoData = doc.data();
       const todoText = todoData.text;
 
-      // Create the to-do item DOM elements (similar to your addItem function)
+      // to-do item DOM elements
       const todoItem = document.createElement("div");
       todoItem.classList.add("todoItem");
       if (todoData.status === "completed") {
@@ -100,14 +98,14 @@ async function loadTodosFromDatabase(userId) {
       todoItem.appendChild(todoTextDiv);
       todoList.appendChild(todoItem);
 
-      // Add the click event listener
+      // click event listener
       todoItem.addEventListener('click', function() {
           this.classList.toggle('completed');
       });
   });
 }
 
-// Call the loadTodosFromDatabase function when the page loads
+// loadTodosFromDatabase function when the page loads
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
       loadTodosFromDatabase(user.uid);
