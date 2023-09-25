@@ -18,8 +18,8 @@ function signInAnonymously() {
 // }
 
 async function addItem(event){
-    event.preventDefault();  // To prevent form submission which might refresh the page.
-
+    event.preventDefault();  
+    
     await signInAnonymously();
 
     const user = firebase.auth().currentUser;
@@ -28,7 +28,7 @@ async function addItem(event){
         let text = document.getElementById("todoInput");
         
         // Adjusting the database path to use user-specific subcollections
-        db.collection('todo-items').doc(userId).set({
+        db.collection('todo-items').doc(userId).collection('items').add({
             text: text.value,
             status: "active"
         }).then(() => {
@@ -42,19 +42,45 @@ async function addItem(event){
     }
 }
 
+// function getItems(){
+//     db.collection('todo-items').onSnapshot((snapshot) =>{
+//         console.log(snapshot);
+//         let items = [];
+//         snapshot.docs.forEach((doc) =>{
+//             items.push({
+//                 id: doc.id,
+//                 ...doc.data()
+//             })
+//         })
+//         generateItems(items);
+//     })
+// }
+
 function getItems(){
-    db.collection('todo-items').onSnapshot((snapshot) =>{
-        console.log(snapshot);
-        let items = [];
-        snapshot.docs.forEach((doc) =>{
-            items.push({
-                id: doc.id,
-                ...doc.data()
-            })
-        })
-        generateItems(items);
-    })
+    const user = firebase.auth().currentUser;
+    firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        const userId = user.uid;
+
+        db.collection('todo-items').doc(userId).collection('items').onSnapshot((snapshot) =>{
+            console.log(snapshot);
+            let items = [];
+            snapshot.docs.forEach((doc) =>{
+                items.push({
+                    id: doc.id,
+                    ...doc.data()
+                });
+            });
+            generateItems(items);
+        });
+    } else {
+        console.error("User not authenticated.");
+    }
+});
 }
+
+
+
 
 function generateItems(items){
     let itemsHTML = "";
