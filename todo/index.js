@@ -70,8 +70,8 @@ function getItems(){
                     id: doc.id,
                     ...doc.data()
                 });
+                generateItems(items);
             });
-            generateItems(items);
         });
     } else {
         console.error("User not authenticated.");
