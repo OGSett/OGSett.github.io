@@ -185,3 +185,14 @@ body {
     cursor: pointer;
     text-align: end;
 }
+
+.attribution {
+    color: var(--Dark-Grayish-Blue);
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 1px;
+    margin: 12px;
+}

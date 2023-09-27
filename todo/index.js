@@ -4,18 +4,6 @@ function signInAnonymously() {
     });
 }
 
-// function addItem(event){
-    
-//     event.preventDefault();
-
-//     let text = document.getElementById("todoInput");
-//     const userId = firebase.auth().currentUser.uid;
-//     db.collection('todo-items').add({
-//         text: text.value,
-//         status: "active"
-//     });
-//     text.value = "";
-// }
 
 async function addItem(event){
     event.preventDefault();  
@@ -27,7 +15,6 @@ async function addItem(event){
         const userId = user.uid;
         let text = document.getElementById("todoInput");
         
-        // Adjusting the database path to use user-specific subcollections
         db.collection('todo-items').doc(userId).collection('items').add({
             text: text.value,
             status: "active"
@@ -42,19 +29,6 @@ async function addItem(event){
     }
 }
 
-// function getItems(){
-//     db.collection('todo-items').onSnapshot((snapshot) =>{
-//         console.log(snapshot);
-//         let items = [];
-//         snapshot.docs.forEach((doc) =>{
-//             items.push({
-//                 id: doc.id,
-//                 ...doc.data()
-//             })
-//         })
-//         generateItems(items);
-//     })
-// }
 
 function getItems(){
     const user = firebase.auth().currentUser;
@@ -70,8 +44,10 @@ function getItems(){
                     id: doc.id,
                     ...doc.data()
                 });
-                generateItems(items);
             });
+            let lenItems = items.length;
+            console.log(lenItems);
+            generateItems(items);
         });
     } else {
         console.error("User not authenticated.");
@@ -80,12 +56,11 @@ function getItems(){
 }
 
 
-
-
 function generateItems(items){
-    let itemsHTML = "";
+    let itemsHTML1 = "";
+    let itemsHTML2 = "";
     items.forEach((item) => {
-        itemsHTML += `
+        itemsHTML1 += `
         <div class="todo-item">
           <div class="check">
             <div data-id="${item.id}" class="check-mark ${item.status == "completed" ? "checked": ""}">
@@ -98,8 +73,13 @@ function generateItems(items){
         </div>
         `
     })
+    itemsHTML2 += `
+            <div class="items-left">
+                ${items.length} items left
+            </div>`
 
-    document.querySelector(".todo-items").innerHTML = itemsHTML;
+    document.querySelector(".todo-items").innerHTML = itemsHTML1;
+    document.querySelector(".items-left").innerHTML = itemsHTML2;
     createEventListeners();
 }
 
@@ -112,22 +92,52 @@ function createEventListeners(){
     })
 }
 
+
 function markCompleted(id){
-    let item = db.collection('todo-items').doc(id);
-    item.get().then(function(doc){
-        if(doc.exists){
-            let status = doc.data().status;
-            if(status == "active"){
-                item.update({
-                    status: "completed"
-                })
-            }else if(status == "completed"){
-                item.update({
-                    status: "active"
-                })
+    const user = firebase.auth().currentUser;
+    if (user) {
+        const userId = user.uid;
+        let item = db.collection('todo-items').doc(userId).collection('items').doc(id);
+        
+        item.get().then(function(doc){
+            if(doc.exists){
+                let status = doc.data().status;
+                if(status == "active"){
+                    item.update({
+                        status: "completed"
+                    })
+                } else if(status == "completed"){
+                    item.update({
+                        status: "active"
+                    })
+                }
             }
-        }
-    })
+        });
+    } else {
+        console.error("User not authenticated.");
+    }
 }
+
+function clearItems(){
+    const user = firebase.auth().currentUser;
+    if(user){
+        const userId = user.uid;
+        let items = db.collection('todo-items').doc(userId).collection('items');
+        items.get().then(function(querySnapshot){
+            querySnapshot.forEach(function(doc){
+                doc.ref.delete();
+            });
+        });
+    }
+}
+
+function onlyActive(){
+    const user = firebase.auth().currentUser;
+    if(user) {
+        const userId = user.uid;
+        let items = db.collection('todo-items').
+    }
+}
+
 
 getItems();
