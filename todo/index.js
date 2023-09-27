@@ -131,13 +131,13 @@ function clearItems(){
     }
 }
 
-function onlyActive(){
-    const user = firebase.auth().currentUser;
-    if(user) {
-        const userId = user.uid;
-        let items = db.collection('todo-items').
-    }
-}
+// function onlyActive(){
+//     const user = firebase.auth().currentUser;
+//     if(user) {
+//         const userId = user.uid;
+//         let items = db.collection('todo-items').
+//     }
+// }
 
 
 getItems();
