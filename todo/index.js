@@ -139,5 +139,22 @@ function clearItems(){
 //     }
 // }
 
+function lightTheme(){
+    const bodyElement = document.body;
+    const themeIcon = document.querySelector(".theme img");
+    const background = document.querySelector(".background-image img");
+    if (bodyElement.classList.contains("dark-theme")) {
+        bodyElement.classList.remove("dark-theme");
+        bodyElement.classList.add("light-theme");
+        themeIcon.src = "./images/icon-moon.svg";
+        background.src = "./images/bg-desktop-light.jpg";
+
+    } else {
+        bodyElement.classList.remove("light-theme");
+        bodyElement.classList.add("dark-theme");
+        themeIcon.src = "./images/icon-sun.svg";
+        background.src = "./images/bg-desktop-dark.jpg";
+    }
+}
 
 getItems();
