@@ -75,7 +75,7 @@ function generateItems(items){
     })
     itemsHTML2 += `
             <div class="items-left">
-                ${items.length} items left
+                ${items.length} items
             </div>`
 
     document.querySelector(".todo-items").innerHTML = itemsHTML1;

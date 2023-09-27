@@ -197,6 +197,7 @@ body {
     margin: 12px;
 }
 
+
 body.light-theme {
     background-color: var(--Very-Light-Gray);
 }
@@ -205,15 +206,9 @@ body.light-theme .container {
     background-color: transparent;
 }
 body.light-theme .todo-item {
-    display: flex;
-    height: 70px;
-    width: 100%;
     background-color: var(--Very-Light-Gray);
     color: var(--Very-Dark-Grayish-Blue);
     border-bottom: 1px solid var(--Light-Grayish-Blue);
-    font-size: 18px;
-    transition: all 0.25s ease;
-    cursor: pointer;
 }
 
 body.light-theme .todo-item:hover {
@@ -239,6 +234,22 @@ body.light-theme .check-mark {
 body.light-theme .todo-list-holder {
     margin-top: 30px;
     background-color: var(--Very-Light-Gray);
-
     box-shadow: 0px 2px 30px 0px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 700px) {
+    .container {
+        width: 100%;
+        max-width: 700px;
+        margin: 5px;
+        margin-left: 5px;
+        margin-top: 100px;
+    }
+
+    .todo-list-holder {
+        font-size: 12px;
+    }
+    .attribution {
+        font-size: 10px;
+    }
 }
