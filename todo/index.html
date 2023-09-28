@@ -39,11 +39,11 @@
     </div>
     <div class="new-todo">
       <div class="check">
-        <div class="check-mark">
+        <div class="check-mark" onclick="addItem(event)">
         </div>
       </div>
       <div class="new-todo-input">
-        <form onsubmit="addItem(event)">
+        <form>
           <input id="todoInput" type="text" placeholder="Create a new todo ...">
         </form>
       </div>
